@@ -1,3 +1,4 @@
+// @ts-ignore
 import {
   Body,
   Controller,
@@ -8,8 +9,8 @@ import {
   HttpCode,
   Param,
   Post,
-  Query
-} from '@nestjs/common';
+  Query,
+} from '@nestjs/common/decorators';
 import { AppService } from './app.service';
 
 @Controller()
@@ -26,6 +27,7 @@ export class AppController {
                     ): string {
     // tslint:disable-next-line:no-console
     console.log(parametrosDeConsulta);
+    // tslint:disable-next-line:no-console
     console.log(typeof parametrosDeConsulta.numero);
     return `Mensaje ${parametrosDeConsulta}`;
   }
@@ -36,6 +38,7 @@ export class AppController {
   ): string {
     // tslint:disable-next-line:no-console
     console.log(`Te inscribiste al curso:  ${parametrosDeRuta.idCurso}`);
+    // tslint:disable-next-line:no-console
     console.log(`Tu cedula es:  ${parametrosDeRuta.cedula}`);
     return `Te inscribiste al curso:  ${parametrosDeRuta.idCurso} <br> ${parametrosDeRuta.cedula}`;
   }
@@ -46,6 +49,7 @@ export class AppController {
       @Body() parametrosDeCuerpo,
       @Body('id') id: number,
   ): string {
+    // tslint:disable-next-line:no-console
     console.log(parametrosDeCuerpo)
     return `${parametrosDeCuerpo}`;
   }
@@ -54,6 +58,7 @@ export class AppController {
   obtenerCabeceras(
       @Headers() cabeceras,
   ) {
+    // tslint:disable-next-line:no-console
     console.log(cabeceras);
     return `Las cabeceras son: ${cabeceras}`;
   }
