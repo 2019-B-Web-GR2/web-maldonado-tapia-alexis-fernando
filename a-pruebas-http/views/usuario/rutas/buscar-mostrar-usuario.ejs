@@ -1,0 +1,79 @@
+<%- include('../../compartido/cabecera')%>
+<div class="container">
+
+    <button onclick="anadirParrafo()"
+            onmouseenter="holaMundo(event)">
+        Hola Mundo
+    </button>
+    <div id="contenedor">
+
+    </div>
+    <script>
+
+        function anadirParrafo() {
+            const elementoContenedor = document.getElementById('contenedor');
+            const linkImagen = "https://cdn.memegenerator.es/imagenes/memes/full/3/68/3680999.jpg";
+            const nombreEtiqueta = 'img';
+            const div = document.createElement(nombreEtiqueta);
+            div.innerHTML= `
+                <div>
+                    <img src="${linkImagen}" width = "200" height = "200" alt ="">
+                    <p>HOLA<p>
+                    <button class="btn btn-infor"> Dale Click Loco </button>
+                </div>
+            `;
+            elementoContenedor.appendChild(div);
+        }
+
+        function holaMundo(EVENTO){
+            console.log(EVENTO);
+            console.log('Hola Mundo :3');
+        }
+    </script>
+
+    <%if(datos.mensaje){%>
+        <div class="alert alert-success" role="alert">
+            <%= datos.mensaje%>
+        </div>
+    <%}%>
+
+    <%if(datos.error){%>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.error%>
+        </div>
+    <%}%>
+
+    <a href="/usuario/ruta/crear-usuario">
+        <button type="button"
+                class="btn btn-primary">
+            Crear Usuario
+        </button>
+    </a>
+
+    <form action="/usuario/ruta/mostrar-usuarios"
+          method="get"
+    >
+        <div class="form-group">
+            <label for="buscarID">
+                Buscar Usuario
+            </label>
+            <input id="buscarID"
+                   type="text"
+                   name="consultarUsuario"
+                   placeholder="Ej: 1718138939 o Alexis"
+                   title="Ingresar la cedula por cedula o nombre"
+                   class="form-control">
+            <small id="nombreIDHelp"
+                   class="form-text text-muted">
+                Puede buscar por cedula o nombre
+            </small>
+        </div>
+    </form>
+
+    <%- include('../componentes/mostrar-tabla',
+    {
+    usuarios:datos.usuarios
+    }
+    )%>
+</div>
+<%- include('../../compartido/pie-de-pagina')%>

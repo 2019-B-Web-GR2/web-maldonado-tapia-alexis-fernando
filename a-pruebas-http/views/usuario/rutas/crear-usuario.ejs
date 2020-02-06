@@ -1,0 +1,60 @@
+<%- include('../../compartido/cabecera')%>
+<% const estaEditando = datos.usuario != undefined;%>
+
+<div class="container">
+    <%if(datos.error){%>
+    <div class="alert alert-danger" role="alert">
+        <%= datos.error%>
+    </div>
+    <%}%>
+    <h1><%= estaEditando ? 'Editando ' + datos.usuario.nombre : 'Crear Usuario'%></h1>
+    <form action=/usuario<%= estaEditando ? '/'+datos.usuario.id : ''%>
+          method="POST"
+    >
+        <div class="form-group">
+            <label for="nombreID">
+                Nombre
+            </label>
+            <input id="nombreID"
+                   type="text"
+                   name="nombre"
+                   value="<%= estaEditando ? datos.usuario.nombre : ''%>"
+                   class="form-control"
+            placeholder="Ej: Alexis Maldonado"
+            title="Ingresar Nombre de Usuario">
+            <small id="nombreIDHelp"
+                   class="form-text text-muted">
+                Ingresa un nombre mayor a 3 caracteres y menor a 10
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="cedulaID">
+                Nombre
+            </label>
+            <input id="cedulaID"
+                   type="text"
+                   name="cedula"
+                   value="<%= estaEditando ? datos.usuario.cedula : ''%>"
+                   "<%= estaEditando ? 'disabled': ''%>"
+                   class="form-control"
+                   placeholder="Ej: 1725790032"
+                   title="Ingresar la cedula del usuario">
+            <small id="cedulaIDHelp"
+                   class="form-text text-muted">
+                Ingresar una cedula valida
+            </small>
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+            Guardar
+        </button>
+        <button type="submit"
+                class="btn btn-secondary">
+            Limpiar Formulario
+        </button>
+    </form>
+</div>
+<%- include('../../compartido/pie-de-pagina')%>
+

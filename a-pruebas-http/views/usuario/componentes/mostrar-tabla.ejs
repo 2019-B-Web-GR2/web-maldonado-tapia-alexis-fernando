@@ -1,0 +1,45 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cedula</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%usuarios.forEach( usuario => {%>
+        <tr>
+            <th scope="row">
+                <%= usuario.id%>
+            </th>
+            <td>
+                <%= usuario.nombre%>
+            </td>
+            <td>
+                <%= usuario.cedula%>
+            </td>
+            <td>
+
+                <a href="/usuario/ruta/editar-usuario/<%= usuario.id%>">
+                    <button type="button"
+                            class="btn btn-info">
+                        Editar
+                    </button>
+                </a>
+                <form action="/usuario/<%= usuario.id%>"
+                      method="POST"
+                >
+                    <button type="submit"
+                            class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </form>
+
+            </td>
+        </tr>
+    <%})%>
+
+
+    </tbody>
+</table>
